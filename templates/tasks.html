@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Tarefas{% endblock %}
+
+{% block content %}
+    <div class="terminal-box">
+        <h2>_ Gerenciar Tarefas _</h2>
+        <a href="{{ url_for('create_task') }}" class="btn success">+ Nova Tarefa</a>
+        {% if tasks %}
+            <table class="terminal-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Projeto</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                        <th>Vencimento</th>
+                        <th>Prioridade</th>
+                        <th>Atribuído a</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.id }}</td>
+                            <td>{{ task.name }}</td>
+                            <td>{{ task.project.name if task.project else 'N/A' }}</td>
+                            <td>{{ task.description }}</td>
+                            <td>{{ task.status }}</td>
+                            <td>{{ task.due_date.strftime('%d/%m/%Y') if task.due_date else 'N/A' }}</td>
+                            <td>{{ task.priority }}</td>
+                            <td>
+                                {% if task.assigned_members %}
+                                    {% for assignment in task.assigned_members %}
+                                        {{ assignment.member.name }}{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    Ninguém
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('edit_task', id=task.id) }}" class="btn info">Editar</a>
+                                <form action="{{ url_for('delete_task', id=task.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn danger" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhuma tarefa cadastrada ainda.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Tarefa{% endblock %}
+
+{% block content %}
+    <div class="terminal-box">
+        <h2>_ Editar Tarefa _</h2>
+        <form method="POST" action="{{ url_for('edit_task', id=task.id) }}">
+            <div class="form-group">
+                <label for="name">Nome da Tarefa:</label>
+                <input type="text" id="name" name="name" value="{{ task.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Descrição:</label>
+                <textarea id="description" name="description">{{ task.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="project_id">Projeto:</label>
+                <select id="project_id" name="project_id" required>
+                    <option value="">Selecione um Projeto</option>
+                    {% for project in projects %}
+                        <option value="{{ project.id }}" {% if task.project_id == project.id %}selected{% endif %}>{{ project.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Pendente" {% if task.status == 'Pendente' %}selected{% endif %}>Pendente</option>
+                    <option value="Em Progresso" {% if task.status == 'Em Progresso' %}selected{% endif %}>Em Progresso</option>
+                    <option value="Concluída" {% if task.status == 'Concluída' %}selected{% endif %}>Concluída</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="due_date">Data de Vencimento:</label>
+                <input type="date" id="due_date" name="due_date" value="{{ task.due_date.strftime('%Y-%m-%d') if task.due_date else '' }}">
+            </div>
+            <div class="form-group">
+                <label for="priority">Prioridade:</label>
+                <select id="priority" name="priority">
+                    <option value="Baixa" {% if task.priority == 'Baixa' %}selected{% endif %}>Baixa</option>
+                    <option value="Média" {% if task.priority == 'Média' %}selected{% endif %}>Média</option>
+                    <option value="Alta" {% if task.priority == 'Alta' %}selected{% endif %}>Alta</option>
+                </select>
+            </div>
+            <button type="submit" class="btn success">Atualizar Tarefa</button>
+            <a href="{{ url_for('tasks') }}" class="btn secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

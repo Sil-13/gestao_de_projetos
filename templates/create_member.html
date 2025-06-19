@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar Membro{% endblock %}
+
+{% block content %}
+    <div class="terminal-box">
+        <h2>_ Adicionar Novo Membro da Equipe _</h2>
+        <form method="POST" action="{{ url_for('create_member') }}">
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Cargo:</label>
+                <input type="text" id="role" name="role">
+            </div>
+            <button type="submit" class="btn success">Adicionar Membro</button>
+            <a href="{{ url_for('members') }}" class="btn secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Atribuir Tarefas{% endblock %}
+
+{% block content %}
+    <div class="terminal-box">
+        <h2>_ Atribuir Tarefa a Membro _</h2>
+        <form method="POST" action="{{ url_for('assign_task') }}">
+            <div class="form-group">
+                <label for="task_id">Tarefa:</label>
+                <select id="task_id" name="task_id" required>
+                    <option value="">Selecione uma Tarefa</option>
+                    {% for task in tasks %}
+                        <option value="{{ task.id }}">{{ task.name }} (Projeto: {{ task.project.name if task.project else 'N/A' }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="member_id">Membro da Equipe:</label>
+                <select id="member_id" name="member_id" required>
+                    <option value="">Selecione um Membro</option>
+                    {% for member in members %}
+                        <option value="{{ member.id }}">{{ member.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn success">Atribuir Tarefa</button>
+        </form>
+
+        <h3 class="mt-4">_ Atribuições Existentes _</h3>
+        {% if assignments %}
+            <table class="terminal-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tarefa</th>
+                        <th>Membro</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assignment in assignments %}
+                        <tr>
+                            <td>{{ assignment.id }}</td>
+                            <td>{{ assignment.task.name if assignment.task else 'Tarefa Excluída' }}</td>
+                            <td>{{ assignment.member.name if assignment.member else 'Membro Excluído' }}</td>
+                            <td>
+                                <form action="{{ url_for('delete_assignment', assignment_id=assignment.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn danger" onclick="return confirm('Tem certeza que deseja remover esta atribuição?')">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhuma tarefa atribuída ainda.</p>
+        {% endif %}
+    </div>
+{% endblock %}

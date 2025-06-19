@@ -1,0 +1,20 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment
+.env
+.env.*
+
+# Docker
+db_data/
+*.db
+
+# VSCode
+.vscode/
+
+# Outros
+.DS_Store

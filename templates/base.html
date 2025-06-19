@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GProjetos{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="terminal-header">
+        <nav>
+            <ul class="terminal-menu">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('projects') }}">Projetos</a></li>
+                <li><a href="{{ url_for('tasks') }}">Tarefas</a></li>
+                <li><a href="{{ url_for('members') }}">Membros</a></li>
+                <li><a href="{{ url_for('assign_task') }}">Atribuir Tarefa</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="terminal-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="terminal-footer">
+        <p>&copy; 2025 GProjetos.</p>
+    </footer>
+</body>
+</html>

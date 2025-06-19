@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Membros da Equipe{% endblock %}
+
+{% block content %}
+    <div class="terminal-box">
+        <h2>_ Gerenciar Membros da Equipe _</h2>
+        <a href="{{ url_for('create_member') }}" class="btn success">+ Novo Membro</a>
+        {% if members %}
+            <table class="terminal-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Cargo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <td>{{ member.id }}</td>
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>{{ member.role }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_member', id=member.id) }}" class="btn info">Editar</a>
+                                <form action="{{ url_for('delete_member', id=member.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn danger" onclick="return confirm('Tem certeza que deseja excluir este membro?')">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum membro da equipe cadastrado ainda.</p>
+        {% endif %}
+    </div>
+{% endblock %}

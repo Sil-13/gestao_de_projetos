@@ -1,0 +1,230 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #1a1a1a;
+    color: #00ff00; /* Verde terminal */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.terminal-header {
+    background-color: #000000;
+    padding: 15px 20px;
+    border-bottom: 2px solid #00ff00;
+    text-align: center;
+}
+
+.terminal-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.terminal-menu li a {
+    color: #00ff00;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #00ff00;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.terminal-menu li a:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+
+.terminal-content {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #0d0d0d;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    overflow-x: auto; /* Para tabelas grandes */
+}
+
+.terminal-footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    border-top: 2px solid #00ff00;
+    color: #00ff00;
+}
+
+.terminal-box {
+    padding: 15px;
+    border: 1px dashed #00cc00;
+    margin-bottom: 20px;
+    background-color: #0a0a0a;
+}
+
+h2, h3 {
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px 2px;
+    border: 1px solid #00ff00;
+    background-color: transparent;
+    color: #00ff00;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Courier New', monospace;
+}
+
+.btn:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+
+.btn.success {
+    border-color: #00cc00;
+    color: #00cc00;
+}
+.btn.success:hover {
+    background-color: #00cc00;
+    color: #000000;
+}
+
+.btn.info {
+    border-color: #00aaff;
+    color: #00aaff;
+}
+.btn.info:hover {
+    background-color: #00aaff;
+    color: #000000;
+}
+
+.btn.danger {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+.btn.danger:hover {
+    background-color: #ff0000;
+    color: #000000;
+}
+
+.btn.primary {
+    border-color: #cc00ff;
+    color: #cc00ff;
+}
+.btn.primary:hover {
+    background-color: #cc00ff;
+    color: #000000;
+}
+
+.btn.secondary {
+    border-color: #aaaaaa;
+    color: #aaaaaa;
+}
+.btn.secondary:hover {
+    background-color: #aaaaaa;
+    color: #000000;
+}
+
+
+/* Formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    width: calc(100% - 10px);
+    padding: 8px;
+    background-color: #0d0d0d;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="date"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #33ff33;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* Tabelas */
+.terminal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.terminal-table th,
+.terminal-table td {
+    border: 1px solid #00ff00;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+}
+
+.terminal-table th {
+    background-color: #003300;
+    color: #00ff00;
+}
+
+.terminal-table tr:nth-child(even) {
+    background-color: #0a0a0a;
+}
+
+/* Flashes (mensagens de feedback) */
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid;
+}
+
+.flashes li {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.flashes .success {
+    background-color: rgba(0, 204, 0, 0.2);
+    border-color: #00cc00;
+    color: #00cc00;
+}
+
+.flashes .warning {
+    background-color: rgba(255, 165, 0, 0.2);
+    border-color: #ffa500;
+    color: #ffa500;
+}
+
+.flashes .error {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
